@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { getVideosByChannelId } from './apis/youtube';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    _getVideos = async () => {
+        const data = {
+            channelId: 'UCI2OiZs5aVcyBUBVsgovzng',
+            part: 'snippet',
+        };
+        const res = await getVideosByChannelId(data);
+        console.log('getVideosByChannelId res :>> ', res);
+    };
+
+    componentDidMount() {
+        console.log('before call api');
+        this._getVideos();
+        console.log('after call api');
+    }
+
+    render() {
+        return <div></div>;
+    }
 }
 
 export default App;
