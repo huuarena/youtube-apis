@@ -9,6 +9,8 @@ import { CONFIG } from '../config';
  * @param {object} data
  */
 export const callYoutubeApi = async (endpoint, method = 'GET', data) => {
+    console.log('url :>> ', CONFIG.YOUTUBE_API_BASE_URL + endpoint);
+
     try {
         const res = await axios({
             url: endpoint,
@@ -19,8 +21,6 @@ export const callYoutubeApi = async (endpoint, method = 'GET', data) => {
             },
             baseURL: CONFIG.YOUTUBE_API_BASE_URL,
         });
-
-        console.log('callYoutubeApi payload :>> ', res.data);
 
         return {
             success: true,
@@ -37,8 +37,6 @@ export const callYoutubeApi = async (endpoint, method = 'GET', data) => {
         if (error?.response?.data) {
             _error = error.response.data;
         }
-
-        console.log('callYoutubeApi error :>> ', _error);
 
         return {
             success: false,
